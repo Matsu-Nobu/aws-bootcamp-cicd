@@ -51,6 +51,8 @@ jobs:
     needs:
       - build_and_push_to_ecr
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Deploy
         run: ".github/workflows/deploy.sh"
 
