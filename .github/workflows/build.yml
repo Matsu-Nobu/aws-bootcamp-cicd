@@ -52,4 +52,5 @@ jobs:
       - build_and_push_to_ecr
     steps:
       - name: Deploy
-        run: echo "CI/CD Pipeline - Deploy phase completed"
+        run: ".github/workflows/deploy.sh"
+
