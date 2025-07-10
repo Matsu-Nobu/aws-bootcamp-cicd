@@ -6,7 +6,7 @@ cat <<EOF
   "executionRoleArn": "arn:aws:iam::295786672535:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
   "runtimePlatform": {
-    "cpuArchitecture": "ARM64",
+    "cpuArchitecture": "x86_64",
     "operatingSystemFamily": "LINUX"
   },
   "containerDefinitions": [
