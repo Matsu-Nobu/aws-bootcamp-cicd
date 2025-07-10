@@ -1,0 +1,96 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:295786672535:task-definition/camp20250710-definition-family-miyata:1",
+  "containerDefinitions": [
+    {
+      "name": "camp20250710-ecs-task-miyata",
+      "image": "295786672535.dkr.ecr.ap-northeast-1.amazonaws.com/camp20250710-repo-miyata:v1",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "rails-port",
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "RAILS_MASTER_KEY",
+          "value": "ea2c55872670eafe54c2673010be0ed7"
+        },
+        {
+          "name": "RAILS_ENV",
+          "value": "production"
+        }
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/camp20250710-miyata",
+          "awslogs-create-group": "true",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "camp20250710-definition-family-miyata",
+  "executionRoleArn": "arn:aws:iam::295786672535:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "1024",
+  "memory": "3072",
+  "runtimePlatform": {
+    "cpuArchitecture": "ARM64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2025-07-10T06:43:12.943Z",
+  "registeredBy": "arn:aws:sts::295786672535:assumed-role/AWSReservedSSO_AdminAccessExcludeBilling_a9d2359a2cd46788/yuki.miyata@techouse.jp",
+  "enableFaultInjection": false,
+  "tags": []
+}
+
