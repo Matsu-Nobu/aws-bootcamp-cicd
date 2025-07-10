@@ -14,6 +14,7 @@ jq < task_definition.json
 
 TASK_DEFINITION_ARN=$(aws ecs register-task-definition --family "camp20250710-definition-family-miyata" \
   --cli-input-json file://task_definition.json \
+  --region ap-northeast-1 \
   | jq -r .taskDefinition.taskDefinitionArn)
 
 if [ -z "${TASK_DEFINITION_ARN}" ]; then
@@ -28,6 +29,7 @@ LATEST_TASK_DEFINITION=$(aws ecs update-service --cluster "${ECS_CLUSTER_ARN}" \
                                                 --service "${ECS_SERVICE_NAME}" \
                                                 --task-definition "${TASK_DEFINITION_ARN}" \
                                                 --propagate-tags SERVICE \
+                                                --region ap-northeast-1 \
                          | jq -r .service.taskDefinition)
 
 if [ "${LATEST_TASK_DEFINITION}" = "${TASK_DEFINITION_ARN}" ]; then
@@ -36,4 +38,3 @@ else
   log "[FAILED] deploy process failed."
   exit 1
 fi
-

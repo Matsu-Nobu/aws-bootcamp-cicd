@@ -53,6 +53,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: 'Configure AWS credentials'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::295786672535:role/github-actions-miyata
+          aws-region: 'ap-northeast-1'
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq
       - name: Deploy
         run: ".github/workflows/deploy.sh"
-
