@@ -3,7 +3,7 @@ name: lint_and_test
 on:
   push:
     branches:
-      - "**"
+      - main
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
     name: "Lint and Test"
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Do something"
+      - run: echo "CI/CD Pipeline started - Lint and Test phase"
   docker_build:
     name: "Docker build"
     if: |
@@ -28,14 +28,13 @@ jobs:
       - lint_and_test
     runs-on: ubuntu-latest
     steps:
-      - name: Do something
-        run: echo "Do something"
+      - name: Docker Build
+        run: echo "CI/CD Pipeline - Docker build phase for main branch"
   deploy:
     name: "Deploy to AWS ECS"
     runs-on: ubuntu-latest
     needs:
       - docker_build
     steps:
-      - name: Do something
-        run: echo "Do something"
-        
+      - name: Deploy
+        run: echo "CI/CD Pipeline - Deploy phase completed"
