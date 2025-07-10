@@ -28,8 +28,21 @@ jobs:
       - lint_and_test
     runs-on: ubuntu-latest
     steps:
-      - name: Docker Build
-        run: echo "CI/CD Pipeline - Docker build phase for main branch"
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build Docker image with timestamp tag
+        run: |
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          echo "Building Docker image with tag: $TIMESTAMP"
+          docker build -t aws-bootcamp-cicd:$TIMESTAMP .
+          docker build -t aws-bootcamp-cicd:latest .
+          echo "Docker image built successfully with tags:"
+          echo "- aws-bootcamp-cicd:$TIMESTAMP"
+          echo "- aws-bootcamp-cicd:latest"
   deploy:
     name: "Deploy to AWS ECS"
     runs-on: ubuntu-latest
